@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" content="width=device-width, initial-scale=1">
+		<title>weather</title>
+        <link href="css/bootstrap.min.css" rel="stylesheet">
+        <script src="js/bootstrap.bundle.min.js"></script>
+	</head>
+
+	<body>
+       <style>
+           h1 {text-align:center;}
+           .weather_list li{
+                width: 160px;
+                border-right: 1px solid black;
+            }
+            .weather_list li:last-child{
+                border-right:none
+            }
+           .weather_list .type{
+               font-size: 23px;
+               text-align:center;
+           }
+           .weather_list .type2{
+               margin-top: 20px;
+               margin-bottom: 20px;
+               font-size: 20px;
+               text-align:center;
+           }
+           .weather_list .type3{
+               margin-top: 20px;
+               margin-bottom: 20px;
+               font-size: 12px;
+               text-align:center;
+           }
+       </style>
+
+       <div id="demo" class="carousel slide" data-bs-ride="carousel" data-interval="100">
+
+           <!-- 指示符 -->
+           <div class="carousel-indicators">
+               <button type="button" data-bs-target="#demo" data-bs-slide-to="0" class="active"></button>
+               <button type="button" data-bs-target="#demo" data-bs-slide-to="1"></button>
+               <button type="button" data-bs-target="#demo" data-bs-slide-to="2"></button>
+           </div>
+
+           <!-- 轮播图片 -->
+           <div class="carousel-inner">
+               <div class="carousel-item active">
+                   <img src="img/2.jpg" class="mx-auto d-block" style="width:30%">
+               </div>
+               <div class="carousel-item">
+                   <img src="img/4.jpg" class="mx-auto d-block" style="width:28.25%">
+               </div>
+               <div class="carousel-item">
+                   <img src="img/1.jpg" class="mx-auto d-block" style="width:28.8%">
+               </div>
+           </div>
+
+           <!-- 左右切换按钮 -->
+           <button class="carousel-control-prev btn btn-success" type="button" data-bs-target="#demo" data-bs-slide="prev">
+               <span class="carousel-control-prev-icon"></span>
+           </button>
+           <button class="carousel-control-next btn btn-success" type="button" data-bs-target="#demo" data-bs-slide="next">
+               <span class="carousel-control-next-icon"></span>
+           </button>
+       </div>
+         
+		<div class="container" id="app">
+			<div class='form-group mx-auto' id="top" >
+                <h1>天气预报</h1>
+				<input class="input_txt" type="text" v-model="city" @keyup.enter="seacherWeather" id="input_text" placeholder="请输入查询的城市"/>
+				<button class="btn btn-outline-success" type="button" @click="seacherWeather" data-bs-toggle="modal" data-bs-target="#myModal">查询</button>
+                
+			</div>
+
+            <div calass="hotkey" id="hot">
+                <a href="javascript:;" @click='changeCity("北京")' data-bs-toggle="modal" data-bs-target="#myModal" data-bs-toggle="tooltip" data-bs-placement="bottom" title="北方是冷的">北京</a>
+                <a href="javascript:;" @click='changeCity("上海")' data-bs-toggle="modal" data-bs-target="#myModal" data-bs-toggle="tooltip" data-bs-placement="bottom" title="南方是热的">上海</a>
+                <a href="javascript:;" @click='changeCity("广州")' data-bs-toggle="modal" data-bs-target="#myModal" data-bs-toggle="tooltip" data-bs-placement="bottom" title="南方的确是热的">广州</a>
+                <a href="javascript:;" @click='changeCity("深圳")' data-bs-toggle="modal" data-bs-target="#myModal" data-bs-toggle="tooltip" data-bs-placement="bottom" title="南方的的确确是热的">深圳</a>
+                <a href="javascript:;" @click='changeCity("南京")' data-bs-toggle="modal" data-bs-target="#myModal" data-bs-toggle="tooltip" data-bs-placement="bottom" title="只是方便我查天气">南京</a>
+                <a href="javascript:;" @click='changeCity("常州")' data-bs-toggle="modal" data-bs-target="#myModal" data-bs-toggle="tooltip" data-bs-placement="bottom" title="真的很方便">常州</a>
+            </div>
+
+			<div  id="button" class="weather_list">
+				<ul class="list-group list-group-horizontal mx-auto" style="width:800px;list-style-type:none">
+					<li  v-for="item in weatherlist">
+                        <div class="type">{{item.date}}</div>
+                        <div class="type2">{{item.type}}</div>
+                        <div class="type3">{{item.low}}~{{item.high}}<br>
+							                {{item.fengxiang}}
+                        </div>
+                        
+					</li>
+				</ul>
+			</div>
+            
+            <div class="modal fade" id="myModal">
+                <div class="modal-dialog modal-sm">
+                    <div class="modal-content">
+              
+                        <div class="modal-header">
+                            <h5 class="modal-title">查询成功!</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                        </div>
+              
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-danger" data-bs-dismiss="modal" data-bs-toggle="tooltip" data-bs-placement="top" title="恶心吗？">关闭</button>
+                        </div>              
+                    </div>
+                </div>
+            </div>
+	    </div>
+
+
+		<script src="js/vue.js"></script>
+		<script src="js/axios.min.js"></script>
+		<script src="js/main.js"></script>
+	</body>
+</html>
