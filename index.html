@@ -20,7 +20,10 @@
                margin-left:auto;
                margin-right:auto;
            }*/
-
+            .type_now{
+                margin-top: 50px;
+                font-size: 35px;
+            }
            .hotkey{
                position: absolute;
                left: 650px;
@@ -53,6 +56,12 @@
                margin-top: 20px;
                margin-bottom: 20px;
                font-size: 12px;
+               text-align:center;
+           }
+           .day{
+               font-size: 15px;
+           }
+           .type_seven{
                text-align:center;
            }
        </style>
@@ -102,18 +111,50 @@
                 <a href="javascript:;" @click='changeCity("常州")' data-bs-toggle="modal" data-bs-target="#myModal" data-bs-toggle="tooltip" data-bs-placement="bottom" title="真的很方便">常州</a>
             </div>
 
-			<div  id="button" class="weather_list">
-				<ul class="list-group list-group-horizontal mx-auto" style="width:800px;list-style-type:none">
-					<li  v-for="item in weatherlist">
-                        <div class="type">{{item.date}}</div>
-                        <div class="type2">{{item.type}}</div>
-                        <div class="type3">{{item.low}}~{{item.high}}<br>
-							                {{item.fengxiang}}
+			<div  >
+				<ul class="list-group list-group-horizontal mx-auto " style="width:800px;list-style-type:none">
+					<li  v-for="item in weatherlist.slice(0,1)">
+                        <div class="row type_now">
+                            <div class="col-md-6 float-end text-end">
+                                实时温度{{item.tem}}<br>
+                                {{item.wea}}<br>
+                                {{item.tem2}}-{{item.tem1}}
+                            </div>
+                            <div class="col-md-6">
+                                <img :src=item.wea_img+'.gif' style="width:100%" >
+                            </div>
+
+
                         </div>
+
+                        {{item.win[0]}}<br>
+                        {{item.win_speed}}<br>
+                        空气质量：{{item.air}}<br>
+                        {{item.air_tips}}<br>
+                        {{item.index[0].title}}:
+                        {{item.index[0].level}}<br>
+                        {{item.index[0].desc}}<br>
+                        {{item.index[3].title}}:
+                        {{item.index[3].level}}<br>
+                        {{item.index[3].desc}}
                         
 					</li>
 				</ul>
 			</div>
+
+            <div  id="button" class="weather_list type_seven">
+                <ul class="list-group list-group-horizontal mx-auto" style="width:800px;list-style-type:none">
+                    <li  v-for="item in weatherlist">
+                       <div class="day">{{item.day}}</div><br>
+                        {{item.wea}}
+                        <img :src=item.wea_img+'.gif' style="width:80%" class="mx-auto d-block">
+                        {{item.tem2}}-{{item.tem1}}<br>
+                        {{item.win[0]}}<br>
+                        {{item.win_speed}}<br>
+                        空气质量：{{item.air}}<br>
+                    </li>
+                </ul>
+            </div>
             
             <div class="modal fade" id="myModal">
                 <div class="modal-dialog modal-sm">
