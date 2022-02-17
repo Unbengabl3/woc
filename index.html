@@ -10,7 +10,29 @@
 	<body>
        <style>
            h1 {text-align:center;}
+       /*    .intxt{
+               display:block;
+               margin-left:auto;
+               margin-right:auto;
+           }
+           .insub{
+               display:block;
+               margin-left:auto;
+               margin-right:auto;
+           }*/
+
+           .hotkey{
+               position: absolute;
+               left: 650px;
+           }
+           .hotkey a{
+               margin-right: 10px;
+               text-decoration: none;
+               color: gray;
+               font-size: 14px;
+           }
            .weather_list li{
+               margin-top: 30px;
                 width: 160px;
                 border-right: 1px solid black;
             }
@@ -69,12 +91,15 @@
 		<div class="container" id="app">
 			<div class='form-group mx-auto' id="top" >
                 <h1>天气预报</h1>
-				<input class="input_txt" type="text" v-model="city" @keyup.enter="seacherWeather" id="input_text" placeholder="请输入查询的城市"/>
-				<button class="btn btn-outline-success" type="button" @click="seacherWeather" data-bs-toggle="modal" data-bs-target="#myModal">查询</button>
-                
+                <div class="row">
+                    <input class="input_txt intxt col-md-3 offset-md-4" type="text" v-model="city" @keyup.enter="seacherWeather" id="input_text" placeholder="请输入查询的城市"/>
+                    <button class="btn btn-outline-success insub col-md-1" type="button" @click="seacherWeather" data-bs-toggle="modal" data-bs-target="#myModal">查 询</button>
+
+                </div>
+
 			</div>
 
-            <div calass="hotkey" id="hot">
+            <div class="hotkey" id="hot">
                 <a href="javascript:;" @click='changeCity("北京")' data-bs-toggle="modal" data-bs-target="#myModal" data-bs-toggle="tooltip" data-bs-placement="bottom" title="北方是冷的">北京</a>
                 <a href="javascript:;" @click='changeCity("上海")' data-bs-toggle="modal" data-bs-target="#myModal" data-bs-toggle="tooltip" data-bs-placement="bottom" title="南方是热的">上海</a>
                 <a href="javascript:;" @click='changeCity("广州")' data-bs-toggle="modal" data-bs-target="#myModal" data-bs-toggle="tooltip" data-bs-placement="bottom" title="南方的确是热的">广州</a>
